@@ -23,4 +23,20 @@ class BinarySearchTree
     current_node = score < current_node.score ? current_node.left : current_node.right
     depth_of(score, current_node, depth += 1)
   end
+
+  def include?(score)
+    current = @root_node
+    loop do
+      break if current.score == nil
+      return true if current.score == score
+      if current.score < score && current.right != nil
+        current = current.right
+      elsif current.score > score && current.left != nil
+        current = current.left
+      else
+        return false
+      end
+    end
+    return false
+  end
 end
